@@ -1,0 +1,89 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #332941;
+    height: 100vh;
+}
+
+main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 16px;
+    height: 100vh;
+}
+
+#container {
+    width: 50%;
+    height: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+#frame {
+    position: relative;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 4.5px solid #864AF9;
+    border-radius: 14.5px;
+}
+
+#frame img {
+    height: 100%;
+    border-radius: 10px;
+}
+
+.inactive {
+    display: none;
+}
+
+#next, #previous {
+    border: none;
+    background-color: none;
+    background-color: #332941;  
+    opacity: 0.25;
+    transition: all 0.65s;
+}
+
+#next:hover, #previous:hover {
+    opacity: 1;
+}
+
+#next img, #previous img {
+    cursor: pointer;
+    width: 48px;
+}
+
+.fade-in {
+    position: absolute;
+    top: 0;
+    left: 0;
+    animation: fade-in 0.65s;
+}
+
+@keyframes fade-in {
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+
+#dotsContainer {
+    display: flex;
+    gap: 8px;
+}
+
+#dotsContainer img {
+    width: 16px;
+}
+
