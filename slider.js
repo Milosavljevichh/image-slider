@@ -1,17 +1,14 @@
 
-let images = document.getElementById('frame').querySelectorAll('img');
-let slides = Array.from(images);
-
-let next = document.getElementById('next');
-let previous = document.getElementById('previous');
-
-let dots_container = document.getElementById('dotsContainer');
-
+const images = document.getElementById('frame').querySelectorAll('img');
+const slides = Array.from(images);
+const next = document.getElementById('next');
+const previous = document.getElementById('previous');
+const dots_container = document.getElementById('dotsContainer');
 let readyToShowSlide = true;
 
 //add dots below the slider frame, depending on how many slides there are
-for (let i=0;i<slides.length;i++){
-    let dot = document.createElement('img');
+for (const slide of slides){
+    const dot = document.createElement('img');
     dot.src = 'img/circle.png';
     dots_container.appendChild(dot);
 };
@@ -114,10 +111,12 @@ function loadPreviousSlide() {
 next.addEventListener('click', loadNextSlide);
 previous.addEventListener('click', loadPreviousSlide);
 
+const transitionDelay = 3000;
+
 function loopThroughSlides() {
     setTimeout(() => {
         loadNextSlide();
-    }, 700);
+    }, transitionDelay);
 };
 
 loopThroughSlides();
