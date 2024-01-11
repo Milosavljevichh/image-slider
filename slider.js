@@ -4,6 +4,9 @@ const slides = Array.from(images);
 const next = document.getElementById('next');
 const previous = document.getElementById('previous');
 const dots_container = document.getElementById('dotsContainer');
+const full_img_container = document.getElementById('fullImage');
+const root = document.querySelector(':root');
+const close_btn = document.getElementById('close');
 let readyToShowSlide = true;
 let timeoutId;
 
@@ -118,6 +121,19 @@ frame.addEventListener('mouseenter', () => {
 
 frame.addEventListener('mouseleave', () => {
     loopThroughSlides();
+});
+
+frame.addEventListener('click', ()=>{
+    const img = document.createElement('img');
+    img.src = slides[active].src;
+    full_img_container.appendChild(img);
+    root.style.setProperty('--display', 'flex');
+});
+
+close_btn.addEventListener('click', ()=>{
+    root.style.setProperty('--display', 'none');
+    let img = full_img_container.querySelector('img');
+    full_img_container.removeChild(img);
 });
 
 const transitionDelay = 3000;
