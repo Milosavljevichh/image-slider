@@ -17,6 +17,11 @@ main {
     height: 100vh;
 }
 
+p {
+    color: white;
+    opacity: 0.85;
+}
+
 #container {
     width: 50%;
     height: 50%;
@@ -34,6 +39,10 @@ main {
     justify-content: center;
     border: 4.5px solid #864AF9;
     border-radius: 14.5px;
+}
+
+#frame:hover {
+    cursor: pointer;
 }
 
 #frame img {

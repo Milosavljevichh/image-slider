@@ -1,10 +1,11 @@
-
+const frame = document.getElementById('frame');
 const images = document.getElementById('frame').querySelectorAll('img');
 const slides = Array.from(images);
 const next = document.getElementById('next');
 const previous = document.getElementById('previous');
 const dots_container = document.getElementById('dotsContainer');
 let readyToShowSlide = true;
+let timeoutId;
 
 //add dots below the slider frame, depending on how many slides there are
 for (const slide of slides){
@@ -111,10 +112,17 @@ function loadPreviousSlide() {
 next.addEventListener('click', loadNextSlide);
 previous.addEventListener('click', loadPreviousSlide);
 
-const transitionDelay = 3000;
+frame.addEventListener('mouseenter', () => {
+    clearTimeout(timeoutId);
+});
 
+frame.addEventListener('mouseleave', () => {
+    loopThroughSlides();
+});
+
+const transitionDelay = 3000;
 function loopThroughSlides() {
-    setTimeout(() => {
+    timeoutId = setTimeout(() => {
         loadNextSlide();
     }, transitionDelay);
 };
