@@ -56,7 +56,6 @@ function loadNextSlide() {
                 slides[0].removeEventListener('animationend', nextSlide);
                 next.disabled = false;
                 readyToShowSlide = true;
-                loopThroughSlides();
             });
         //if the active number is in range of the number of slides,
         //show the next slide, give it an animation and when animation ends,
@@ -72,7 +71,6 @@ function loadNextSlide() {
                 slides[active].removeEventListener('animationend', nextSlide);
                 next.disabled = false;
                 readyToShowSlide = true;
-                loopThroughSlides();
         });
     }}
 };
@@ -94,7 +92,6 @@ function loadPreviousSlide() {
                 slides[slides.length - 1].removeEventListener('animationend', nextSlide);
                 previous.disabled = false;
                 readyToShowSlide = true;
-                loopThroughSlides();
             })
         } else {
             slides[active].classList.toggle('inactive');
@@ -107,7 +104,6 @@ function loadPreviousSlide() {
                 slides[active].removeEventListener('animationend', nextSlide);
                 previous.disabled = false;
                 readyToShowSlide = true;
-                loopThroughSlides();
             });
     }}
 };
@@ -116,7 +112,9 @@ next.addEventListener('click', loadNextSlide);
 previous.addEventListener('click', loadPreviousSlide);
 
 frame.addEventListener('mouseenter', () => {
-    clearTimeout(timeoutId);
+    if (timeoutId) {
+        clearTimeout(timeoutId);
+    };
 });
 
 frame.addEventListener('mouseleave', () => {
@@ -140,6 +138,7 @@ const transitionDelay = 3000;
 function loopThroughSlides() {
     timeoutId = setTimeout(() => {
         loadNextSlide();
+        loopThroughSlides();
     }, transitionDelay);
 };
 
